@@ -1,7 +1,7 @@
 #install.packages("stringi")
 #install.packages("devtools")
 #devtools::install_github("cardiomoon/kormaps2014")
-
+library(DT)
 library(kormaps2014)
 
 str(changeCode(korpop1))
@@ -16,6 +16,8 @@ library(mapproj)
 library(ggiraphExtra)
 library(ggplot2)
 
+str(changeCode(korpop1))
+theme_set(theme_gray(base_family = "NanumGothic"))
 
 ggChoropleth(data = korpop1,      # 지도에 표현할 데이터
              aes(fill = pop,      # 색깔로 표현할 변수
