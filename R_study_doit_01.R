@@ -1,4 +1,4 @@
-install.packages("foreign")
+#install.packages("foreign")
 
 library(foreign)
 library(dplyr)
@@ -14,7 +14,7 @@ welfare <- raw_welfare
 
 head(welfare)
 tail(welfare)
-View(welfare)
+#View(welfare)
 dim(welfare)
 str(welfare)
 summary(welfare)
