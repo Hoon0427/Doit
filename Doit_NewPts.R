@@ -7,33 +7,30 @@ library(kormaps2014)
 str(changeCode(korpop1))
 
 library(dplyr)
-korpop1 <- rename(korpop1, pop = ì´ì¸êµ¬_ëª…, name = í–‰ì •êµ¬ì—­ë³„_ìë©´ë™) 
-
+korpop1 <- rename(korpop1, pop = ÃÑÀÎ±¸_¸í, name = ÇàÁ¤±¸¿ªº°_À¾¸éµ¿) 
+korpop1$name <- iconv(korpop1$name, "UTF-8","CP949")
 
 #install.packages("ggiraphExtra")
-#install.packages("mapproj")
-library(mapproj)
 library(ggiraphExtra)
 library(ggplot2)
 
 str(changeCode(korpop1))
-theme_set(theme_gray(base_family = "NanumGothic"))
 
-ggChoropleth(data = korpop1,      # ì§€ë„ì— í‘œí˜„í•  ë°ì´í„°
-             aes(fill = pop,      # ìƒ‰ê¹”ë¡œ í‘œí˜„í•  ë³€ìˆ˜
-                 map_id = code,   # ì§€ì—­ ê¸°ì¤€ ë³€ìˆ˜
-                 tooltip = name), # ì§€ë„ ìœ„ì— í‘œì‹œí•  ì§€ì—­ëª…
-             map = kormap1,       # ì§€ë„ ë°ì´í„°
-             interactive = T)     # ì¸í„°ëž™í‹°ë¸Œ
+ggChoropleth(data = korpop1,      # Áöµµ¿¡ Ç¥ÇöÇÒ µ¥ÀÌÅÍ
+             aes(fill = pop,      # »ö±ò·Î Ç¥ÇöÇÒ º¯¼ö
+                 map_id = code,   # Áö¿ª ±âÁØ º¯¼ö
+                 tooltip = name), # Áöµµ À§¿¡ Ç¥½ÃÇÒ Áö¿ª¸í
+             map = kormap1,       # Áöµµ µ¥ÀÌÅÍ
+             interactive = T)     # ÀÎÅÍ·¢Æ¼ºê
 
 
 str(changeCode(tbc))
 
+tbc$name <- iconv(tbc$name, "UTF-8", "CP949")
 
-ggChoropleth(data = tbc,          # ì§€ë„ì— í‘œí˜„í•  ë°ì´í„°
-             aes(fill = NewPts,   # ìƒ‰ê¹”ë¡œ í‘œí˜„í•  ë³€ìˆ˜
-                 map_id = code,   # ì§€ì—­ ê¸°ì¤€ ë³€ìˆ˜
-                 tooltip = name), # ì§€ë„ ìœ„ì— í‘œì‹œí•  ì§€ì—­ëª…
-             map = kormap1,       # ì§€ë„ ë°ì´í„°
-             interactive = T)     # ì¸í„°ëž™í‹°ë¸Œ
-
+ggChoropleth(data = tbc,          # Áöµµ¿¡ Ç¥ÇöÇÒ µ¥ÀÌÅÍ
+             aes(fill = NewPts,   # »ö±ò·Î Ç¥ÇöÇÒ º¯¼ö
+                 map_id = code,   # Áö¿ª ±âÁØ º¯¼ö
+                 tooltip = name), # Áöµµ À§¿¡ Ç¥½ÃÇÒ Áö¿ª¸í
+             map = kormap1,       # Áöµµ µ¥ÀÌÅÍ
+             interactive = T)     # ÀÎÅÍ·¢Æ¼ºê
