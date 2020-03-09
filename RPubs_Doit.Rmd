@@ -18,9 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-# 1.
-
-## '한국복지패널데이터' 분석 준비하기
+# 1.'한국복지패널데이터' 분석 준비하기
 
 <br>
 
@@ -28,7 +26,8 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-### 1) 깃허브(bit.ly/doit_rb)에서 Koweps_hpc10_2015_beta1.sav 파일을 다운로드해 프로젝트 폴더에 삽입합니다. 이 파일은 2016년에 발간된 복지패널데이터로, 6,914가구, 16,664명에 대한 정보를 담고있습니다.
+### 1) 파일 다운로드
+#### 깃허브(bit.ly/doit_rb)에서 Koweps_hpc10_2015_beta1.sav 파일을 다운로드해 프로젝트 폴더에 삽입합니다. 이 파일은 2016년에 발간된 복지패널데이터로, 6,914가구, 16,664명에 대한 정보를 담고있습니다.
 
 <br>
 
@@ -118,9 +117,7 @@ summary(welfare)
 <br>
 
 
-# 2.
-
-## "성별에 따라 월급이 다를까?"
+# 2.성별에 따른 월급 차이 - "성별에 따라 월급이 다를까?"
 
 <br>
 
@@ -221,7 +218,7 @@ table(is.na(welfare$income))
 ```
 
 
-# 3.
+# 3.나이와 월급의 관계 - "몇 살 때 월급을 가장 많이 받을까?"
 
 <br>
 
@@ -318,11 +315,7 @@ head(age_income)
 ggplot(data = age_income, aes(x = age, y = mean_income)) + geom_line()
 ```
 
-# 4.
-
-<br>
-
-#### 연령대에 따른 월급 차이 - "어떤 연령대의 월급이 가장 많을까?"
+# 4.연령대에 따른 월급 차이 - "어떤 연령대의 월급이 가장 많을까?"
 
 <br>
 
@@ -398,7 +391,7 @@ ggplot(data = ageg_income, aes(x = ageg, y = mean_income)) +
 <br>
 <br>
 
-# 5.
+# 5.연령대 및 성별 월급 차이 - "성별 월급 차이는 연령대별로 다를까?"
 
 <br>
 
@@ -489,7 +482,7 @@ ggplot(data = sex_age, aes(x = age, y = mean_income, col = sex)) +
 <br>
 <br>
 
-# 6.
+# 6.직업별 월급 차이 - "어떤 직업이 월급을 가장 많이 받을까?"
 
 <br>
 
@@ -633,7 +626,7 @@ ggplot(data = bottom10, aes(x = reorder(job, -mean_income),
 <br>
 <br>
 
-# 7.
+# 7.성별 직업 빈도 - "성별로 어떤 직업이 가장 많을까?"
 
 <br>
 
@@ -711,7 +704,7 @@ ggplot(data = job_female, aes(x = reorder(job,n), y = n)) +
 <br>
 <br>
 
-# 8.
+# 8.종교 유무에 따른 이혼율 - "종교가 있는 사람들이 이혼을 덜 할까?"
 
 <br>
 
@@ -957,7 +950,7 @@ ggplot(data = df_divorce, aes(x = ageg, y = pct, fill = religion)) +
 <br>
 <br>
 
-# 9.
+# 9.지역별 연령대 비율 - "노년층이 많은 지역은 어디일까?"
 
 <br>
 
