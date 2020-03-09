@@ -3,18 +3,20 @@ title: "한국인의 삶을 파악하라!"
 author: "HooN"
 date: "`r Sys.Date()`"
 output: 
-  html_document:
-    highlight: textmate
-    theme: default
-    toc: true
-    toc_float: true
-    code_folding: show
+  prettydoc::html_pretty:
+    theme: cayman
     df_print: paged
+    toc: true
 ---
+<p align="center">
+  ![쉽게 배우는 R 데이터 분석](C:\MyRCode\Doit\Doit_main.jpg)<br>
+  <b>Github Code: [Hoon0427/RPubs](https://github.com/Hoon0427/Doit/blob/master/RPubs_Doit.Rmd){target="_blank"} </b><br>
+</p>
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
 
 # 1.
 
@@ -1123,3 +1125,5 @@ ggplot(data = region_ageg, aes(x = region, y = pct, fill = ageg)) +
   scale_x_discrete(limits = order)
 ```
 
+ <a style="display:scroll;position:fixed;bottom:10px;right:10px;" href="#" title="맨위로"><img
+src="https://addons-media.operacdn.com/media/extensions/95/180195/7.1.0-rev1/icons/icon_64x64_d8775c76175241b21a30008e4144b127.png"></a>
