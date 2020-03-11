@@ -13,8 +13,14 @@ twitter <- rename(twitter,
                   date = 작성일,
                   tw = 내용)
 
-install.packages("stringr")
+summary(twitter)
+str(twitter)
+?rename
+
+#install.packages("stringr")
 library(stringr)
+
+
 #특수문자 제거
 twitter$tw <- str_replace_all(twitter$tw, "\\W", " ")
 head(twitter$tw)
