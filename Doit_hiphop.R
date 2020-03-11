@@ -4,41 +4,45 @@
 #install.packages("KoNLP")
 #install.packages("jdk")
 #install.packages("stringr")
+#install.packages("Sejong")
+#install.packages("hash")
+#install.packages("tau")
+#install.packages("RSQLite")
 
-library(stringr)
 library(KoNLP)
+library(stringr)
 library(dplyr)
 
 useNIADic()
 
-#ë°ì´í„° ë¶ˆëŸ¬ì˜¤ê¸°
+#?°?´?„° ë¶ˆëŸ¬?˜¤ê¸?
 txt <- readLines("hiphop.txt")
 
 head(txt)
 
-install.packages("stringr")
+#install.packages("stringr")
 library(stringr)
 
-#íŠ¹ìˆ˜ë¬¸ì ì œê±°
+#?Š¹?ˆ˜ë¬¸ì ? œê±?
 txt <- str_replace_all(txt, "\\W", " ")
 
-extractNoun("ëŒ€í•œë¯¼êµ­ì˜ ì˜í† ëŠ” í•œë°˜ë„ì™€ ê·¸ ë¶€ì†ë„ì„œë¡œ í•œë‹¤")
+extractNoun("??€?•œë¯¼êµ­?˜ ?˜?† ?Š” ?•œë°˜ë„??€ ê·? ë¶€?†?„?„œë¡? ?•œ?‹¤")
 
-# ê°€ì‚¬ì—ì„œ ëª…ì‚¬ ì¶”ì¶œ
-nouns <- extracNoun(txt)
+# ê°€?‚¬?—?„œ ëª…ì‚¬ ì¶”ì¶œ
+nouns <- extractNoun(txt)
 
-# ì¶”ì¶œí•œ ëª…ì‚¬ listë¥¼ ë¬¸ìì—´ ë²¡í„°ë¡œ ë³€í™˜, ë‹¨ì–´ë³„ ë¹ˆë„í‘œ ìƒì„±
+# ì¶”ì¶œ?•œ ëª…ì‚¬ listë¥? ë¬¸ì?—´ ë²¡í„°ë¡? ë³€?™˜, ?‹¨?–´ë³? ë¹ˆë„?‘œ ?ƒ?„±
 wordcount <- table(unlist(nouns))
 
-# ë°ì´í„° í”„ë ˆì„ìœ¼ë¡œ ë³€í™˜
+# ?°?´?„° ?”„? ˆ?„?œ¼ë¡? ë³€?™˜
 df_word <- as.data.frame(wordcount, stringsAsfactors = F)
 
-# ë³€ìˆ˜ëª… ìˆ˜ì •
+# ë³€?ˆ˜ëª? ?ˆ˜? •
 df_word <- rename(df_word,
                   word = Var1,
                   freq = Freq)
 
-# ë‘ ê¸€ì ì´ìƒ ë‹¨ì–´ ì¶”ì¶œ
+# ?‘ ê¸€? ?´?ƒ ?‹¨?–´ ì¶”ì¶œ
 df_word <- filter(df_word, nchar(word) >= 2)
 
 top_20 <- df_word %>%
@@ -47,35 +51,35 @@ top_20 <- df_word %>%
 
 top_20
 
-# íŒ¨í‚¤ì§€ ì„¤ì¹˜
-install.packages("wordcloud")
+# ?Œ¨?‚¤ì§€ ?„¤ì¹?
+#install.packages("wordcloud")
 
-# íŒ¨í‚¤ì§€ ë¡œë“œ
+# ?Œ¨?‚¤ì§€ ë¡œë“œ
 library(wordcloud)
 library(RColorBrewer)
 
-# Dark2 ìƒ‰ìƒ ëª©ë¡ì—ì„œ 8ê°œ ìƒ‰ìƒ ì¶”ì¶œ
+# Dark2 ?ƒ‰?ƒ ëª©ë¡?—?„œ 8ê°? ?ƒ‰?ƒ ì¶”ì¶œ
 pal <- brewer.pal(8, "Dark2")
 
 set.seed(1234)
 
-wordcloud(words = df_word$word,   #ë‹¨ì–´
+wordcloud(words = df_word$word,   #?‹¨?–´
           freq = df_word$freq,	  #ë¹ˆë„
-          min.freq = 2, 		  #ìµœì†Œ ë‹¨ì–´ ë¹ˆë„
-          max.words = 200, 		  #í‘œí˜„ ë‹¨ì–´ ìˆ˜
-          random.order = F,		  #ê³ ë¹ˆë„ ë‹¨ì–´ ì¤‘ì•™ ë°°ì¹˜
-          rot.per = .1,			  #íšŒì „ ë‹¨ì–´ ë¹„ìœ¨
-          scale = c(4, 0.3),		  #ë‹¨ì–´ í¬ê¸° ë²”ìœ„
-          colors = pal)			  #ìƒ‰ìƒ ëª©ë¡
+          min.freq = 2, 		  #ìµœì†Œ ?‹¨?–´ ë¹ˆë„
+          max.words = 200, 		  #?‘œ?˜„ ?‹¨?–´ ?ˆ˜
+          random.order = FALSE,		  #ê³ ë¹ˆ?„ ?‹¨?–´ ì¤‘ì•™ ë°°ì¹˜
+          rot.per = .1,			  #?šŒ? „ ?‹¨?–´ ë¹„ìœ¨
+          scale = c(4, 0.3),		  #?‹¨?–´ ?¬ê¸? ë²”ìœ„
+          colors = pal)			  #?ƒ‰?ƒ ëª©ë¡
 
-pal <- brewer.pal(9, "Blues")[5:9]	#ìƒ‰ìƒ ëª©ë¡ ìƒì„±
-set.seed(1234)						#ë‚œìˆ˜ ê³ ì •
+pal <- brewer.pal(9, "Blues")[5:9]	#?ƒ‰?ƒ ëª©ë¡ ?ƒ?„±
+set.seed(1234)						#?‚œ?ˆ˜ ê³ ì •
 
-wordcloud(words = df_word$word,			#ë‹¨ì–´
+wordcloud(words = df_word$word,			#?‹¨?–´
           freq = df_word$freq,	#ë¹ˆë„
-          min.freq = 2,			#ìµœì†Œ ë‹¨ì–´ ë¹ˆë„
-          max.words = 200,		#í‘œí˜„ ë‹¨ì–´ ìˆ˜
-          randow.order = F,		#ê³ ë¹ˆë„ ë‹¨ì–´ ì¤‘ì•™ ë°°ì¹˜
-          rot.per = .1,			#íšŒì „ ë‹¨ì–´ ë¹„ìœ¨
-          scale = c(4, 0.3),	#ë‹¨ì–´ í¬ê¸° ë²”ìœ„
-          colors = pal)			#ìƒ‰ìƒ ëª©ë¡
+          min.freq = 2,			#ìµœì†Œ ?‹¨?–´ ë¹ˆë„
+          max.words = 200,		#?‘œ?˜„ ?‹¨?–´ ?ˆ˜
+          randow.order = FALSE,		#ê³ ë¹ˆ?„ ?‹¨?–´ ì¤‘ì•™ ë°°ì¹˜
+          rot.per = .1,			#?šŒ? „ ?‹¨?–´ ë¹„ìœ¨
+          scale = c(4, 0.3),	#?‹¨?–´ ?¬ê¸? ë²”ìœ„
+          colors = pal)			#?ƒ‰?ƒ ëª©ë¡
