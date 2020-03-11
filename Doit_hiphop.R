@@ -1,7 +1,11 @@
-install.packages("rJava")
-install.packages("memoise")
-install.packages("KoNLP")
+#install.packages("rJava")
+#install.packages("memoise")
+#install.packages("stringi")
+#install.packages("KoNLP")
+#install.packages("jdk")
+#install.packages("stringr")
 
+library(stringr)
 library(KoNLP)
 library(dplyr)
 
